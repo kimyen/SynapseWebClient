@@ -33,6 +33,8 @@ public class ReplyWidgetViewImpl implements ReplyWidgetView {
 	Div synAlertContainer;
 	@UiField
 	Button deleteButton;
+	@UiField
+	Button editButton;
 
 	private Widget widget;
 	private ReplyWidget presenter;
@@ -44,6 +46,12 @@ public class ReplyWidgetViewImpl implements ReplyWidgetView {
 			@Override
 			public void onClick(ClickEvent event) {
 				presenter.onClickDeleteReply();
+			}
+		});
+		editButton.addClickHandler(new ClickHandler(){
+			@Override
+			public void onClick(ClickEvent event) {
+				presenter.onClickEditReply();
 			}
 		});
 	}

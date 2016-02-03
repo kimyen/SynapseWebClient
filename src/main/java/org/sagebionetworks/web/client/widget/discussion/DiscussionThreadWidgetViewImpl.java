@@ -82,6 +82,8 @@ public class DiscussionThreadWidgetViewImpl implements DiscussionThreadWidgetVie
 	HTMLPanel loadingUI;
 	@UiField
 	Button deleteButton;
+	@UiField
+	Button editButton;
 
 	private Widget widget;
 	private DiscussionThreadWidget presenter;
@@ -141,6 +143,13 @@ public class DiscussionThreadWidgetViewImpl implements DiscussionThreadWidgetVie
 			@Override
 			public void onClick(ClickEvent event) {
 				presenter.onClickDeleteThread();
+			}
+		});
+		editButton.addClickHandler(new ClickHandler(){
+
+			@Override
+			public void onClick(ClickEvent event) {
+				presenter.onClickEditThread();
 			}
 		});
 	}

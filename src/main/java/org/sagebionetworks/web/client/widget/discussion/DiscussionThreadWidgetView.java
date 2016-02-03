@@ -20,6 +20,8 @@ public interface DiscussionThreadWidgetView extends IsWidget{
 		void loadMore();
 
 		void onClickDeleteThread();
+
+		void onClickEditThread();
 	}
 
 	void setPresenter(DiscussionThreadWidget presenter);

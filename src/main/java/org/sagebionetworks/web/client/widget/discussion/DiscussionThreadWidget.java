@@ -281,4 +281,10 @@ public class DiscussionThreadWidget implements DiscussionThreadWidgetView.Presen
 			view.toggleReplies();
 		}
 	}
+
+	@Override
+	public void onClickEditThread() {
+		// TODO Auto-generated method stub
+		
+	}
 }

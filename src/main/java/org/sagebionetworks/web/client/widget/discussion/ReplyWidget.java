@@ -138,4 +138,10 @@ public class ReplyWidget implements ReplyWidgetView.Presenter{
 			}
 		});
 	}
+
+	@Override
+	public void onClickEditReply() {
+		// TODO Auto-generated method stub
+		
+	}
 }

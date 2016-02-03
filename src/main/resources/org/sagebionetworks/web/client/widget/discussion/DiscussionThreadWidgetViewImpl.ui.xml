@@ -62,6 +62,7 @@
 			<bh:Div width="100%" pull="RIGHT" addStyleNames="margin-bottom-5">
 				<b:Button ui:field="loadMoreButton" addStyleNames="margin-top-5" visible="false">Load more replies</b:Button>
 				<b:Button ui:field="replyButton" addStyleNames="margin-top-5 margin-left-10">Reply</b:Button>
+				<b:Button ui:field="editButton" icon="PENCIL" visible="false" addStyleNames="margin-top-5 margin-left-10">Edit Thread</b:Button>
 				<b:Button ui:field="deleteButton" type="DANGER" icon="TRASH_O" visible="false" addStyleNames="margin-top-5 margin-left-10">Delete Thread</b:Button>
 			</bh:Div>
 		</b:Collapse>
