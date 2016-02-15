@@ -1,7 +1,10 @@
 package org.sagebionetworks.web.unitclient.widget.discussion;
 
 import static org.junit.Assert.*;
+import static org.sagebionetworks.web.client.widget.discussion.DiscussionMessageURLUtil.*;
+import java.io.UnsupportedEncodingException;
 
+import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 import org.sagebionetworks.web.client.widget.discussion.DiscussionMessageURLUtil;
 import org.sagebionetworks.web.shared.WebConstants;
@@ -9,35 +12,41 @@ import org.sagebionetworks.web.shared.WebConstants;
 public class DiscussionMessageURLUtilTest {
 
 	@Test (expected=IllegalArgumentException.class)
-	public void testBuildMessageUrlWithNullKey() {
+	public void testBuildMessageUrlWithNullKey() throws UnsupportedEncodingException {
 		DiscussionMessageURLUtil.buildMessageUrl(null, "type");
 	}
 
 	@Test (expected=IllegalArgumentException.class)
-	public void testBuildMessageUrlWithNullType() {
+	public void testBuildMessageUrlWithNullType() throws UnsupportedEncodingException {
 		DiscussionMessageURLUtil.buildMessageUrl("key", null);
 	}
 
 	@Test
-	public void testBuildMessageUrlWithThreadType() {
-		String url = DiscussionMessageURLUtil.buildMessageUrl("key", WebConstants.THREAD_TYPE);
+	public void testBuildMessageUrlWithThreadType() throws UnsupportedEncodingException {
+		String messageKey = "key";
+		String url = DiscussionMessageURLUtil.buildMessageUrl(messageKey, WebConstants.THREAD_TYPE);
 		assertNotNull(url);
 		assertEquals(url, "/Portal"+WebConstants.DISCUSSION_MESSAGE_SERVLET+"?"
-				+WebConstants.MESSAGE_KEY_PARAM+"=key&"+WebConstants.TYPE_PARAM
+				+WebConstants.MESSAGE_KEY_PARAM+"="
+				+ new String(Base64.encodeBase64(messageKey.getBytes(UTF_8)), UTF_8)
+				+"&"+WebConstants.TYPE_PARAM
 				+"="+WebConstants.THREAD_TYPE);
 	}
 
 	@Test
-	public void testBuildMessageUrlWithReplyType() {
-		String url = DiscussionMessageURLUtil.buildMessageUrl("key", WebConstants.REPLY_TYPE);
+	public void testBuildMessageUrlWithReplyType() throws UnsupportedEncodingException {
+		String messageKey = "key";
+		String url = DiscussionMessageURLUtil.buildMessageUrl(messageKey, WebConstants.REPLY_TYPE);
 		assertNotNull(url);
 		assertEquals(url, "/Portal"+WebConstants.DISCUSSION_MESSAGE_SERVLET+"?"
-				+WebConstants.MESSAGE_KEY_PARAM+"=key&"+WebConstants.TYPE_PARAM
+				+WebConstants.MESSAGE_KEY_PARAM+"="
+				+ new String(Base64.encodeBase64(messageKey.getBytes(UTF_8)), UTF_8)
+				+"&"+WebConstants.TYPE_PARAM
 				+"="+WebConstants.REPLY_TYPE);
 	}
 
 	@Test (expected=IllegalArgumentException.class)
-	public void testBuildMessageUrlWithUnsupportedType() {
+	public void testBuildMessageUrlWithUnsupportedType() throws UnsupportedEncodingException {
 		DiscussionMessageURLUtil.buildMessageUrl("key", "type");
 	}
 }

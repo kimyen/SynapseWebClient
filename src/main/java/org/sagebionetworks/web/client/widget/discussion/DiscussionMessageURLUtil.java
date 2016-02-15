@@ -1,10 +1,14 @@
 package org.sagebionetworks.web.client.widget.discussion;
 
+import java.io.UnsupportedEncodingException;
+
+import org.apache.commons.codec.binary.Base64;
 import org.sagebionetworks.web.shared.WebConstants;
 
 public class DiscussionMessageURLUtil {
+	public static final String UTF_8 = "UTF-8";
 
-	public static String buildMessageUrl(String messageKey, String type){
+	public static String buildMessageUrl(String messageKey, String type) throws UnsupportedEncodingException{
 		if (messageKey == null) {
 			throw new IllegalArgumentException("messageKey is required.");
 		}
@@ -20,7 +24,8 @@ public class DiscussionMessageURLUtil {
 		builder.append("?");
 		builder.append(WebConstants.MESSAGE_KEY_PARAM);
 		builder.append("=");
-		builder.append(messageKey);
+		String encodedMessageKey = new String(Base64.encodeBase64(messageKey.getBytes(UTF_8)), UTF_8);
+		builder.append(encodedMessageKey);
 		builder.append("&");
 		builder.append(WebConstants.TYPE_PARAM);
 		builder.append("=");
